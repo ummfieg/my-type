@@ -1,6 +1,10 @@
 "use client";
 import { motion } from "motion/react";
+import Link from "next/link";
 import { ReactTyped } from "react-typed";
+import contactIcon from "@/assets/mail.svg";
+import shareIcon from "@/assets/share.svg";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -38,9 +42,12 @@ export default function Home() {
 
           <nav className=" flex-col flex-2 border-b-2 border-t-2 border-foreground ">
             <div className="border-b border-sub">
-              <a href="#" className="my-3 inline-block text-3xl text-sub">
+              <Link
+                href="/register"
+                className="my-3 inline-block text-3xl text-sub"
+              >
                 register
-              </a>
+              </Link>
             </div>
             <div className="border-b  border-sub">
               <a href="#" className="my-3 inline-block text-3xl text-sub">
@@ -103,6 +110,23 @@ export default function Home() {
           </div>
         </section>
       </main>
+      <footer className="flex flex-col items-end gap-2 my-1">
+        <Image
+          src={contactIcon}
+          alt="contact-image"
+          width={27}
+          height={27}
+          className="cursor-pointer"
+          title="ummfieg@naver.com"
+        ></Image>
+        <Image
+          src={shareIcon}
+          alt="share-image"
+          width={27}
+          height={27}
+          className="cursor-pointer"
+        ></Image>
+      </footer>
     </>
   );
 }
