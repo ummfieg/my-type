@@ -1,9 +1,24 @@
+"use client";
+import { motion } from "motion/react";
+import { ReactTyped } from "react-typed";
+
 export default function Home() {
   return (
     <>
       <header className="flex flex-col gap-5">
         <div className="text-8xl text-foreground font-bold flex justify-center ">
-          my type.
+          my type
+          <motion.span
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.4,
+              scale: { type: "spring", visualDuration: 0.4, bounce: 0.5 },
+            }}
+            className="inline-block"
+          >
+            .
+          </motion.span>
         </div>
 
         <div className="flex justify-end">
@@ -63,7 +78,15 @@ export default function Home() {
               <span className="text-3xl font-medium">sieze the day</span>
               <span className="text-3xl mr-1 ml-1">"</span>
             </div>
-            <p className="text-center mb-2 text-2xl">sieze the day</p>
+            <p className="text-center mb-2 text-2xl">
+              <ReactTyped
+                strings={["sieze the day"]}
+                typeSpeed={70}
+                backSpeed={90}
+                backDelay={1500}
+                loop
+              />
+            </p>
             <div className=" h-px bg-sub"></div>
             <button className="text-end text-point cursor-pointer my-2">
               start typing →
