@@ -19,10 +19,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="ko">
-      <body className="h-screen w-screen antialiased p-5">
-        <div className="flex box-border flex-col w-full justify-center">
-          {children}
-        </div>
+      <body className="h-screen w-screen antialiased p-5 box-border">
+        <div className="flex flex-col w-full justify-center">{children}</div>
       </body>
     </html>
   );
