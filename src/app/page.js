@@ -5,6 +5,14 @@ import { ReactTyped } from "react-typed";
 import contactIcon from "@/assets/mail.svg";
 import shareIcon from "@/assets/share.svg";
 import Image from "next/image";
+import { HighlightButton } from "@/components/ui/button";
+
+const menuItems = [
+  { label: "register", href: "/register", border: "border-b border-sub" },
+  { label: "study", href: "#", border: " border-b border-sub" },
+  { label: "my types", href: "#", border: "border-b border-point" },
+  { label: "setting", href: "#", border: "" },
+];
 
 export default function Home() {
   return (
@@ -40,30 +48,19 @@ export default function Home() {
             <div className="flex-1"></div>
           </div>
 
-          <nav className=" flex-col flex-2 border-b-2 border-t-2 border-foreground ">
-            <div className="border-b border-sub">
-              <Link
-                href="/register"
-                className="my-3 inline-block text-3xl text-sub"
-              >
-                register
-              </Link>
-            </div>
-            <div className="border-b  border-sub">
-              <a href="#" className="my-3 inline-block text-3xl text-sub">
-                study
-              </a>
-            </div>
-            <div className="border-b border-point ">
-              <a href="#" className="my-3 inline-block text-3xl text-sub">
-                my types
-              </a>
-            </div>
-            <div>
-              <a href="#" className="my-3 inline-block text-3xl text-sub">
-                setting
-              </a>
-            </div>
+          <nav className=" flex-col flex-2 border-b-2 border-t-2 border-foreground text-sub">
+            {menuItems.map((item) => (
+              <div key={item.label} className={item.border}>
+                <HighlightButton>
+                  <Link
+                    href={item.href}
+                    className="my-3 inline-block text-3xl group-hover:text-foreground"
+                  >
+                    {item.label}
+                  </Link>
+                </HighlightButton>
+              </div>
+            ))}
           </nav>
         </div>
       </header>
