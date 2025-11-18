@@ -1,14 +1,24 @@
+import Link from "next/link";
+
 export default function MenuNav() {
   return (
     <>
       <div className="flex gap-3 justify-end items-center text-sub">
-        <span className="cursor-pointer">home</span>
+        <Link href="/" className="cursor-pointer">
+          home
+        </Link>
         <div>|</div>
-        <span className="cursor-pointer">register</span>
+        <Link href="/register" className="cursor-pointer">
+          register
+        </Link>
         <div>|</div>
-        <span className="cursor-pointer">study</span>
+        <Link href="/" className="cursor-pointer">
+          study
+        </Link>
         <div>|</div>
-        <span className="cursor-pointer">my types</span>
+        <Link href="/" className="cursor-pointer">
+          my types
+        </Link>
       </div>
     </>
   );
