@@ -1,3 +1,5 @@
+import { HighlightButton } from "../ui/button";
+
 export default function Word() {
   return (
     <div className="flex flex-col gap-5 py-1 px-5">
@@ -16,8 +18,8 @@ export default function Word() {
             />
           ))}
         </div>
-        <button className="cursor-pointer self-end" type="submit">
-          등록하기
+        <button className="cursor-pointer self-end text-sub" type="submit">
+          <HighlightButton>등록하기</HighlightButton>
         </button>
       </form>
     </div>

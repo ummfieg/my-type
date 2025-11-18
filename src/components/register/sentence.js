@@ -1,3 +1,5 @@
+import { HighlightButton } from "../ui/button";
+
 export default function Sentence() {
   return (
     <>
@@ -6,7 +8,7 @@ export default function Sentence() {
           한 문장은 <span className="font-bold">50자~160자 까지</span> 가능해요.
         </span>
         <form className="flex flex-col gap-3 items-start">
-          <div className="grid grid-rows-5 grid-cols-1 gap-3 w-4/5">
+          <div className="grid grid-rows-5 grid-cols-1 gap-3 w-full">
             {Array.from({ length: 5 }).map((_, index) => (
               <textarea
                 key={index}
@@ -17,8 +19,11 @@ export default function Sentence() {
             ))}
           </div>
 
-          <button className="cursor-pointer w-4/5 text-end" type="submit">
-            등록하기
+          <button
+            className="cursor-pointer text-end text-sub self-end"
+            type="submit"
+          >
+            <HighlightButton>등록하기</HighlightButton>
           </button>
         </form>
       </div>
