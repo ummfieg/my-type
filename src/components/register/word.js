@@ -1,6 +1,6 @@
 import { HighlightButton } from "../ui/button";
 
-export default function Word() {
+export default function Word({ onClickOpenModal }) {
   return (
     <div className="flex flex-col gap-5 py-1 px-5">
       <span>
@@ -18,7 +18,11 @@ export default function Word() {
             />
           ))}
         </div>
-        <button className="cursor-pointer self-end text-sub" type="submit">
+        <button
+          className="cursor-pointer self-end text-sub"
+          type="button"
+          onClick={() => onClickOpenModal()}
+        >
           <HighlightButton>등록하기</HighlightButton>
         </button>
       </form>

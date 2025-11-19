@@ -6,12 +6,21 @@ import PageTitle from "@/components/ui/pageTitle";
 import Word from "@/components/register/word";
 import Sentence from "@/components/register/sentence";
 import Code from "@/components/register/code";
-import UserCategoryModal from "@/components/register/userCategory";
+import UserCategoryModal from "@/components/register/modal/userCategoryModal";
+import UserCategory from "@/components/register/modal/userCategoryModal";
 
 export default function Resgister() {
   const [category, setCategory] = useState("WORD");
   const onSelect = (e) => {
     setCategory(e);
+  };
+
+  const [openModal, setOpenModal] = useState(false);
+  const onClickOpenModal = () => {
+    setOpenModal(true);
+  };
+  const onClickCloseModal = () => {
+    setOpenModal(false);
   };
 
   return (
@@ -26,12 +35,19 @@ export default function Resgister() {
 
       <main className="flex justify-center my-10">
         <div className="border-l w-4/5">
-          {category === "WORD" && <Word />}
-          {category === "SENTENCE" && <Sentence />}
-          {category === "CODE" && <Code />}
+          {category === "WORD" && <Word onClickOpenModal={onClickOpenModal} />}
+          {category === "SENTENCE" && (
+            <Sentence onClickOpenModal={onClickOpenModal} />
+          )}
+          {category === "CODE" && <Code onClickOpenModal={onClickOpenModal} />}
         </div>
       </main>
-      {/* <UserCategoryModal /> */}
+      {openModal && (
+        <UserCategory
+          category={category}
+          onClickCloseModal={onClickCloseModal}
+        />
+      )}
     </>
   );
 }
