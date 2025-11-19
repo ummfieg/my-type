@@ -26,7 +26,7 @@ export default function InputCategory({ handleChange, handleRegister }) {
         <HighlightButton>등록완료</HighlightButton>
       </button>
       <p className="text-sub text-sm text-end">
-        카테고리 관리는 'my types'에서 할 수 있어요
+        카테고리 관리는 &apos;my types&apos;에서 할 수 있어요
       </p>
     </form>
   );

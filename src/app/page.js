@@ -78,9 +78,9 @@ export default function Home() {
           <div className="flex flex-col w-3/10">
             <p className="text-sub font-bold">오늘도 차곡차곡 쌓아볼까요?</p>
             <div className="bg-main rounded-full border-solid p-7 text-center shadow-xl mb-5 mt-1">
-              <span className="text-3xl mr-1 ml-1">"</span>
+              <span className="text-3xl mr-1 ml-1">&quot;</span>
               <span className="text-3xl font-medium">sieze the day</span>
-              <span className="text-3xl mr-1 ml-1">"</span>
+              <span className="text-3xl mr-1 ml-1">&quot;</span>
             </div>
             <p className="text-center mb-2 text-2xl">
               <ReactTyped
