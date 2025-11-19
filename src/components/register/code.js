@@ -13,7 +13,7 @@ export default function Code() {
             <textarea
               key={index}
               type="text"
-              className="border bg-main rounded-md border-transparent focus:border-b-point focus:outline-hidden px-2 py-2 resize-none h-[400px] overflow-scroll"
+              className="border bg-main rounded-md border-transparent focus:border-b-point focus:outline-hidden px-2 py-2 resize-none h-[400px] overflow-auto"
               placeholder="코드 입력"
             />
           ))}
