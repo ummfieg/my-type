@@ -7,6 +7,7 @@
   --sub: #9c9c9c;
   /* --point: rgba(255, 105, 6, 0.7); */
   --point: #ff6906;
+  --font-default: "Pretendard", Arial, sans-serif;
 }
 
 @theme inline {
@@ -17,10 +18,31 @@
   --color-sub: var(--sub);
   --color-main: var(--main);
   --color-point: var(--point);
+  --font-sans: var(--font-default);
+}
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Thin.otf") format("opentype");
+  font-weight: 100;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Pretendard";
+  src: url("/fonts/Pretendard-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-default);
 }
