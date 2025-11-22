@@ -9,7 +9,7 @@ export default function InputCategory({ handleChange, handleRegister }) {
         <span className="text-sm text-sub "> (10자 이내)</span>
       </span>
 
-      <div className="bg-white/50 rounded-2xl border-transparent flex justify-center items-center p-2 mb-5 mx-auto w-70 ">
+      <div className="bg-white/50 rounded-2xl border-transparent flex justify-center items-center p-2 mb-5 mx-auto w-10/12 ">
         <input
           className="border border-main rounded-2xl w-full h-10 focus:border-sub focus:outline-none p-2"
           placeholder="빈 카테고리"

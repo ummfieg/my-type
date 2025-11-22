@@ -2,7 +2,7 @@ import React from "react";
 import { HighlightButton } from "./button";
 const categoryItems = ["WORD", "SENTENCE", "CODE"];
 
-export default function Category({ onSelect, category }) {
+export default function SystemCategory({ onSelect, category }) {
   return (
     <div className="flex justify-center flex-col w-84 pt-2 ">
       <div className="rounded-full border-foreground h-14 border px-4 flex justify-around items-center ">
