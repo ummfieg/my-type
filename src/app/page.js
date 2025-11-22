@@ -9,7 +9,7 @@ import { HighlightButton } from "@/components/ui/button";
 
 const menuItems = [
   { label: "register", href: "/register", border: "border-b border-sub" },
-  { label: "study", href: "#", border: " border-b border-sub" },
+  { label: "study", href: "/study", border: " border-b border-sub" },
   { label: "my types", href: "#", border: "border-b border-point" },
   { label: "setting", href: "#", border: "" },
 ];
