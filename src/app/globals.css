@@ -7,6 +7,8 @@
   --sub: #9c9c9c;
   /* --point: rgba(255, 105, 6, 0.7); */
   --point: #ff6906;
+  --accent: #e2efdf;
+  --accent-dark: #b0c8aa;
   --font-default: "Pretendard", Arial, sans-serif;
 }
 
@@ -18,6 +20,8 @@
   --color-sub: var(--sub);
   --color-main: var(--main);
   --color-point: var(--point);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
   --font-sans: var(--font-default);
 }
 @font-face {
