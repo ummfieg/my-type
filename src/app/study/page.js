@@ -1,15 +1,21 @@
 "use client";
 import NavBar from "@/components/ui/menuNav";
 import PageTitle from "@/components/ui/pageTitle";
-import Category from "@/components/ui/systemCategory";
+import SystemCategory from "@/components/ui/systemCategory";
+import { useState } from "react";
 
 export default function Study() {
+  const [category, setCategory] = useState("WORD");
+  const onSelect = (e) => {
+    setCategory(e);
+  };
+
   return (
     <>
       <header>
         <NavBar />
         <div className="flex justify-between items-start my-6 mx-12">
-          <Category />
+          <SystemCategory onSelect={setCategory} category={category} />
           <PageTitle />
         </div>
       </header>

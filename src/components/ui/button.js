@@ -6,6 +6,15 @@ export function HighlightButton({ children }) {
   );
 }
 
-export function SimpleButton() {
-  return <div></div>;
+export function ClickedButton({ children, isClicked, onClick }) {
+  return (
+    <div
+      className={`cursor-pointer bg-transparent ${
+        isClicked ? "text-foreground font-bold" : "text-sub"
+      }`}
+      onClick={onClick}
+    >
+      {children}
+    </div>
+  );
 }
