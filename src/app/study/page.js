@@ -12,6 +12,15 @@ export default function Study() {
     setCategory(e);
   };
 
+  const [typed, setTyped] = useState("");
+  const wordList = "call for 요구하다";
+
+  const onChangeInput = (e) => {
+    const value = e.target.value;
+    setTyped(value);
+  };
+  const letters = wordList.split("");
+
   return (
     <>
       <header>
@@ -36,7 +45,22 @@ export default function Study() {
             <div className="w-full flex justify-center my-6">
               <div className="bg-white/70 rounded-3xl px-5 py-3">
                 <div className="flex items-center w-72 h-12 rounded-2xl border-2 border-main bg-transparent text-center text-lg font-medium justify-center">
-                  <p className="text-sub font-bold">call for 요구하다</p>
+                  {letters.map((char, index) => {
+                    let colorClass = "text-sub font-bold";
+
+                    if (index < typed.length) {
+                      colorClass =
+                        typed[index] === char
+                          ? "text-foreground font-bold"
+                          : "text-point font-bold";
+                    }
+
+                    return (
+                      <span key={index} className={colorClass}>
+                        {char === " " ? "\u00A0" : char}
+                      </span>
+                    );
+                  })}
                 </div>
               </div>
             </div>
@@ -50,8 +74,13 @@ export default function Study() {
             <div className="w-full flex justify-center my-6">
               <div className="bg-white/70 rounded-3xl px-5 py-3">
                 <input
-                  className="w-72 h-12 rounded-2xl border-2 border-main bg-transparent text-center text-lg font-medium focus:outline-none focus:border-accent-dark transition"
-                  placeholder="typing.."
+                  value={typed}
+                  onChange={onChangeInput}
+                  className={`w-72 h-12 rounded-2xl border-2 border-main bg-transparent text-center text-lg font-medium focus:outline-none focus:border-accent-dark transition
+
+  `}
+                  placeholder="타이핑 해보세요"
+                  maxLength={20}
                 />
               </div>
             </div>
