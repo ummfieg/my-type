@@ -28,14 +28,14 @@ export default function Resgister() {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar pathName={pathName} />
         <div className="flex justify-between items-start my-6 mx-12">
           <SystemCategory
             onSelect={setCategory}
             category={category}
             pathName={pathName}
           />
-          <PageTitle />
+          <PageTitle pathName={pathName} />
         </div>
       </header>
 
