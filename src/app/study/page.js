@@ -3,7 +3,7 @@ import NavBar from "@/components/ui/menuNav";
 import PageTitle from "@/components/ui/pageTitle";
 import SystemCategory from "@/components/ui/systemCategory";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Study() {
   const pathName = usePathname();
@@ -20,6 +20,15 @@ export default function Study() {
     setTyped(value);
   };
   const letters = wordList.split("");
+
+  const [showEffect, setShowEffect] = useState(false);
+  const isCorrect = typed === wordList;
+  useEffect(() => {
+    if (isCorrect) {
+      setShowEffect(true);
+      setTimeout(() => setShowEffect(false), 1000);
+    }
+  }, [isCorrect]);
 
   return (
     <>
@@ -66,6 +75,12 @@ export default function Study() {
             </div>
           </div>
         </section>
+
+        {showEffect && (
+          <div className="fixed bottom-10 flex justify-center items-center pointer-events-none z-50">
+            <span className="text-4xl animate-rise">👍 👏 🎉</span>
+          </div>
+        )}
 
         <section className="relative flex justify-end items-center md:w-[1000px] h-56 mr-20">
           <div className="absolute w-4/5 h-48 bg-sub/40 -translate-y-3 -translate-x-3 z-0 shadow-md"></div>

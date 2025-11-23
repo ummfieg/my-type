@@ -50,3 +50,18 @@ body {
   color: var(--foreground);
   font-family: var(--font-default);
 }
+
+@keyframes rise {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(-40px);
+  }
+}
+
+.animate-rise {
+  animation: rise 0.7s ease-out forwards;
+}
