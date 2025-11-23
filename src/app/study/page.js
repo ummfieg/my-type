@@ -2,9 +2,11 @@
 import NavBar from "@/components/ui/menuNav";
 import PageTitle from "@/components/ui/pageTitle";
 import SystemCategory from "@/components/ui/systemCategory";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 export default function Study() {
+  const pathName = usePathname();
   const [category, setCategory] = useState("WORD");
   const onSelect = (e) => {
     setCategory(e);
@@ -13,10 +15,10 @@ export default function Study() {
   return (
     <>
       <header>
-        <NavBar />
+        <NavBar pathName={pathName} />
         <div className="flex justify-between items-start my-6 mx-12">
           <SystemCategory onSelect={setCategory} category={category} />
-          <PageTitle />
+          <PageTitle pathName={pathName} />
         </div>
       </header>
 
