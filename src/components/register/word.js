@@ -1,6 +1,6 @@
 import { HighlightButton } from "../ui/button";
 
-export default function Word({ onClickOpenModal }) {
+export default function Word({ onClickOpenModal, wordInputs, onWordChange }) {
   return (
     <div className="flex flex-col gap-5 py-1 px-5">
       <span>
@@ -9,10 +9,12 @@ export default function Word({ onClickOpenModal }) {
       </span>
       <form className="flex flex-col gap-3">
         <div className="grid grid-cols-5 grid-rows-6 gap-3">
-          {Array.from({ length: 30 }).map((_, index) => (
+          {wordInputs.map((item, index) => (
             <input
               key={index}
               type="text"
+              value={item}
+              onChange={(e) => onWordChange(index, e.target.value)}
               className="border bg-main rounded-md border-transparent focus:border-b-point focus:outline-hidden px-2 py-2"
               placeholder="단어입력"
             />

@@ -1,38 +1,16 @@
-"use client";
-
 import { useEffect, useState } from "react";
 import { HighlightButton } from "../../ui/button";
 import InputCategory from "./inputCategory";
 import SeletCategory from "./selectCategory";
-export default function UserCategory({ category, onClickCloseModal }) {
-  const [userCategory, setUserCategory] = useState(Array(10).fill(""));
-  const [hasRegistered, setHasRegistered] = useState(false);
-
-  const handleChange = (index, value) => {
-    const newUserCategory = [...userCategory];
-    newUserCategory[index] = value;
-    setUserCategory(newUserCategory);
-  };
-
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    // onClickCloseModal();
-  };
-
-  const handleRegister = () => {
-    e.preventDefault();
-    console.log(`${category}, ${userCategory} 저장준비`);
-    localStorage.setItem(category, JSON.stringify(userCategory));
-    setHasRegistered(true);
-  };
-
-  const [selectedCategory, setSelectedCategory] = useState("");
-
+export default function UserCategory({
+  category,
+  onRegisterSubmit,
+  userCategory,
+  onAddCategory,
+  onSelectCategory,
+}) {
   return (
-    <div
-      className="fixed inset-0 bg-black/40 flex justify-center items-center z-50"
-      onClick={onClickCloseModal}
-    >
+    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50">
       <div
         className="border border-sub rounded-4xl w-2/6 flex flex-col items-center p-8 bg-background max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
@@ -43,12 +21,14 @@ export default function UserCategory({ category, onClickCloseModal }) {
         <div className="border-sub border-b w-full my-4"></div>
 
         <div className="w-full max-h-[60vh] overflow-y-auto flex flex-col items-center">
-          <InputCategory
-            handleChange={handleChange}
-            handleRegister={handleRegister}
-          />
+          <InputCategory onAddCategory={onAddCategory} />
           <div className="border-sub border-b w-full my-4"></div>
-          <SeletCategory userCategory={userCategory} />
+          <SeletCategory
+            userCategory={userCategory}
+            category={category}
+            onSelectCategory={onSelectCategory}
+            onRegisterSubmit={onRegisterSubmit}
+          />
         </div>
       </div>
     </div>

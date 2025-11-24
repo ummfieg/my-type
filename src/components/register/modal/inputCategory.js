@@ -1,9 +1,20 @@
+"use client";
 import { HighlightButton } from "@/components/ui/button";
 import { useState } from "react";
 
-export default function InputCategory({ handleChange, handleRegister }) {
+export default function InputCategory({ onAddCategory }) {
+  const [inputValue, setInputValue] = useState("");
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    if (!inputValue.trim()) return;
+
+    onAddCategory(inputValue);
+    setInputValue("");
+  };
+
   return (
-    <form className="flex flex-col gap-3 px-3 w-4/5">
+    <form className="flex flex-col gap-3 px-3 w-4/5" onSubmit={handleRegister}>
       <span className="text-start">
         새 카테고리 등록
         <span className="text-sm text-sub "> (10자 이내)</span>
@@ -14,15 +25,11 @@ export default function InputCategory({ handleChange, handleRegister }) {
           className="border border-main rounded-2xl w-full h-10 focus:border-sub focus:outline-none p-2"
           placeholder="빈 카테고리"
           maxLength={10}
-          name="유저카테고리"
-          // onChange={(e) => handleChange(e.target.value)}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
         ></input>
       </div>
-      <button
-        className="cursor-pointer self-end text-sub"
-        type="submit"
-        onClick={handleRegister}
-      >
+      <button className="cursor-pointer self-end text-sub" type="submit">
         <HighlightButton>등록완료</HighlightButton>
       </button>
       <p className="text-sub text-sm text-end">
