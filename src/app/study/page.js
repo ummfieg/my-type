@@ -7,28 +7,71 @@ import { useEffect, useState } from "react";
 
 export default function Study() {
   const pathName = usePathname();
+  const [userData, setUserData] = useState({});
   const [category, setCategory] = useState("WORD");
   const onSelect = (e) => {
     setCategory(e);
   };
+  const [userCategory, setUserCategory] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const [typed, setTyped] = useState("");
-  const wordList = "call for 요구하다";
+  const [letters, setLetters] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showEffect, setShowEffect] = useState(false);
+
+  const isCorrect = typed === letters.join("");
 
   const onChangeInput = (e) => {
-    const value = e.target.value;
-    setTyped(value);
+    setTyped(e.target.value);
   };
-  const letters = wordList.split("");
 
-  const [showEffect, setShowEffect] = useState(false);
-  const isCorrect = typed === wordList;
   useEffect(() => {
-    if (isCorrect) {
+    const storedData = JSON.parse(localStorage.getItem("userData")) || {};
+    setUserData(storedData);
+  }, []);
+
+  useEffect(() => {
+    const categories = userData[category]
+      ? Object.keys(userData[category])
+      : [];
+
+    setUserCategory(categories);
+    setSelectedCategory(categories[0] || "");
+    setCurrentIndex(0);
+  }, [category, userData]);
+
+  useEffect(() => {
+    setCurrentIndex(0);
+    setTyped("");
+  }, [category, selectedCategory]);
+
+  useEffect(() => {
+    const words = userData[category]?.[selectedCategory] || [];
+    const current = words[currentIndex] || "";
+    setLetters(current.split(""));
+    setTyped("");
+  }, [category, selectedCategory, currentIndex, userData]);
+
+  useEffect(() => {
+    if (isCorrect && letters.length > 0) {
       setShowEffect(true);
-      setTimeout(() => setShowEffect(false), 1000);
+      const timeout = setTimeout(() => setShowEffect(false), 1000);
+      return () => clearTimeout(timeout);
     }
-  }, [isCorrect]);
+  }, [isCorrect, letters]);
+
+  const handleKeyDown = (e) => {
+    if (!isCorrect) return;
+    if (e.key === "Enter") {
+      const words = userData[category]?.[selectedCategory] || [];
+
+      if (currentIndex < words.length - 1) {
+        setCurrentIndex((prev) => prev + 1);
+      }
+      e.preventDefault();
+    }
+  };
 
   return (
     <>
@@ -42,9 +85,20 @@ export default function Study() {
 
       <main className="w-full flex flex-col items-center px-6 mt-3 gap-2">
         <section className="flex justify-start ml-20 w-full md:w-[1000px]">
-          <div className="bg-sub/30 px-3 py-2">
-            <p className="text-20px">올해안에외우자</p>
-          </div>
+          <select
+            className="text-20px bg-sub/30 px-3 py-2"
+            value={selectedCategory}
+            onChange={(e) => setSelectedCategory(e.target.value)}
+          >
+            <option value="" disabled>
+              카테고리 선택
+            </option>
+            {userCategory.map((cat, idx) => (
+              <option key={idx} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
           <div className="bg-accent-dark px-3 py-2"></div>
         </section>
 
@@ -54,22 +108,27 @@ export default function Study() {
             <div className="w-full flex justify-center my-6">
               <div className="bg-white/70 rounded-3xl px-5 py-3">
                 <div className="flex items-center w-72 h-12 rounded-2xl border-2 border-main bg-transparent text-center text-lg font-medium justify-center">
-                  {letters.map((char, index) => {
-                    let colorClass = "text-sub font-bold";
+                  {letters && letters.length > 0 ? (
+                    letters.map((char, index) => {
+                      let colorClass = "text-sub font-bold";
 
-                    if (index < typed.length) {
-                      colorClass =
-                        typed[index] === char
-                          ? "text-foreground font-bold"
-                          : "text-point font-bold";
-                    }
-
-                    return (
-                      <span key={index} className={colorClass}>
-                        {char === " " ? "\u00A0" : char}
-                      </span>
-                    );
-                  })}
+                      if (typed && index < typed.length) {
+                        colorClass =
+                          typed[index] === char
+                            ? "text-foreground font-bold"
+                            : "text-point font-bold";
+                      }
+                      return (
+                        <span key={index} className={colorClass}>
+                          {char === " " ? "\u00A0" : char}
+                        </span>
+                      );
+                    })
+                  ) : (
+                    <span className="text-sub font-bold">
+                      단어를 먼저 등록해주세요
+                    </span>
+                  )}
                 </div>
               </div>
             </div>
@@ -91,6 +150,7 @@ export default function Study() {
                 <input
                   value={typed}
                   onChange={onChangeInput}
+                  onKeyDown={handleKeyDown}
                   className={`w-72 h-12 rounded-2xl border-2 border-main bg-transparent text-center text-lg font-medium focus:outline-none focus:border-accent-dark transition
 
   `}
